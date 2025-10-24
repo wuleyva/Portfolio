@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tu Nombre — Portafolio</title>
+  <meta name="description" content="Portafolio profesional de Tu Nombre: investigación, proyectos, CV y hobbies." />
+  <meta property="og:title" content="Tu Nombre — Portafolio" />
+  <meta property="og:description" content="Investigación, proyectos, CV y hobbies." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="img/og-image.jpg" />
+  <link rel="icon" href="img/favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    /* === Sistema de diseño (colores y tipografías) === */
+    :root{
+      --bg: #0b1220;         /* Navy oscuro (fondo) */
+      --panel: #111a2e;      /* Paneles/cards */
+      --text: #e6ebff;       /* Texto principal */
+      --muted: #a8b3cf;      /* Texto secundario */
+      --line: #223252;       /* Bordes/sutil */
+      --brand: #c9a227;      /* Dorado sobrio (acentos) */
+      --brand-2: #6aa6ff;    /* Acento frío secundario */
+      --ok: #35c759;         /* Verde éxito */
+      --danger: #ff3b30;     /* Rojo alerta */
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0}
+    body{
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 800px at 80% -10%, #1a2440 0%, var(--bg) 60%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a{color: var(--brand-2); text-decoration: none}
+    a:hover{text-decoration: underline}
+    .container{width:min(1100px, 92%); margin:auto}
+
+    /* === Cabecera / navegación === */
+    header{position:sticky; top:0; backdrop-filter: blur(8px); background: color-mix(in srgb, var(--bg) 70%, transparent); border-bottom:1px solid var(--line); z-index:10}
+    .nav{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 0}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.3px}
+    .brand .dot{width:10px; height:10px; border-radius:50%; background:var(--brand)}
+    .menu{display:flex; gap:22px}
+    .menu a{color:var(--muted)}
+    .menu a.active, .menu a:hover{color:var(--text)}
+
+    /* === Hero === */
+    .hero{display:grid; grid-template-columns: 1.1fr .9fr; gap:32px; padding:64px 0 36px}
+    .badge{display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border:1px solid var(--line); border-radius:999px; color:var(--muted); font-size:12px}
+    .badge .pulse{width:6px; height:6px; background:var(--ok); border-radius:50%; box-shadow: 0 0 0 4px color-mix(in srgb, var(--ok) 20%, transparent)}
+    h1{font-size: clamp(28px, 4vw, 42px); line-height:1.15; margin:14px 0}
+    .lead{color:var(--muted); font-size: clamp(15px, 2.2vw, 18px)}
+    .cta{display:flex; flex-wrap:wrap; gap:12px; margin-top:20px}
+    .btn{display:inline-flex; align-items:center; gap:10px; padding:12px 16px; border-radius:12px; border:1px solid var(--line); color:var(--text); background:linear-gradient(180deg, #18213a, #0f172a); cursor:pointer}
+    .btn.primary{background: linear-gradient(180deg, #2a3658, #1a2440); border-color: color-mix(in srgb, var(--brand) 30%, var(--line));}
+    .btn:hover{transform: translateY(-1px)}
+    .portrait{aspect-ratio: 1/1; border-radius:16px; background:
+      radial-gradient(400px 200px at 80% 0%, color-mix(in srgb, var(--brand) 15%, #0b1220) 0%, transparent 60%),
+      url('img/portrait.jpg') center/cover no-repeat, var(--panel);
+      border:1px solid var(--line);
+    }
+
+    /* === Secciones === */
+    section{padding:40px 0; border-top:1px solid var(--line)}
+    section h2{font-size: clamp(22px, 3vw, 30px); margin:0 0 8px}
+    section p.section-lead{color:var(--muted); margin-top:0}
+
+    /* === Grids/cards === */
+    .grid{display:grid; gap:18px}
+    .grid.cols-3{grid-template-columns: repeat(3, 1fr)}
+    .grid.cols-2{grid-template-columns: repeat(2, 1fr)}
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr}
+      .grid.cols-3{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width: 640px){
+      .grid.cols-2, .grid.cols-3{grid-template-columns:1fr}
+    }
+    .card{background:linear-gradient(180deg, color-mix(in srgb, var(--panel) 85%, transparent), var(--panel)); border:1px solid var(--line); border-radius:16px; padding:16px}
+    .card h3{margin:10px 0 6px; font-size:18px}
+    .meta{display:flex; gap:10px; flex-wrap:wrap; color:var(--muted); font-size:13px}
+    .tags{display:flex; gap:8px; flex-wrap:wrap; margin-top:8px}
+    .tag{font-size:12px; padding:4px 8px; border:1px solid var(--line); border-radius:999px; color:var(--muted)}
+
+    /* === CV === */
+    .cv-actions{display:flex; gap:12px; flex-wrap:wrap; margin-top:10px}
+    .cv-note{color:var(--muted); font-size:14px}
+
+    /* === Footer === */
+    footer{padding:24px 0 60px; border-top:1px solid var(--line); color:var(--muted)}
+    .social{display:flex; gap:14px; flex-wrap:wrap}
+    .sep{opacity:.35}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand"><span class="dot"></span> <span>Tu Nombre</span></div>
+      <nav class="menu" aria-label="Secciones principales">
+        <a href="#investigacion" class="active">Investigación</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#cv">CV</a>
+        <a href="#hobbies">Hobbies</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- === Hero === -->
+    <section class="hero" aria-labelledby="presentacion">
+      <div>
+        <span class="badge"><span class="pulse" aria-hidden="true"></span> Disponible para oportunidades</span>
+        <h1 id="presentacion">Físico y analista de datos con pasión por enseñar</h1>
+        <p class="lead">Diseño modelos de datos y visualizaciones que explican fenómenos complejos con claridad. Tengo experiencia en investigación, BI y ciencia de datos. Aquí comparto mis proyectos, publicaciones y un vistazo a lo que me inspira.</p>
+        <div class="cta">
+          <a class="btn primary" href="#contacto">Contactar</a>
+          <a class="btn" href="#cv">Ver mi CV</a>
+        </div>
+      </div>
+      <div class="portrait" role="img" aria-label="Retrato o imagen representativa"></div>
+    </section>
+
+    <!-- === Investigación === -->
+    <section id="investigacion" aria-labelledby="investigacion-title">
+      <h2 id="investigacion-title">Líneas de investigación</h2>
+      <p class="section-lead">Publicaciones, posters y trabajos en curso. Sustituye los ejemplos por tu contenido real.</p>
+      <div class="grid cols-3">
+        <article class="card">
+          <div class="meta">2023 · Revista X · DOI: 10.0000/xxxxx</div>
+          <h3>Dinámica de sistemas no lineales en plasmas</h3>
+          <p>Exploré estabilidad y bifurcaciones usando métodos numéricos y análisis variacional.</p>
+          <div class="tags"><span class="tag">Diferenciales</span><span class="tag">Simulación</span><span class="tag">Plasma</span></div>
+          <p><a href="#">PDF</a> · <a href="#">Código</a> · <a href="#">Cita BibTeX</a></p>
+        </article>
+        <article class="card">
+          <div class="meta">2022 · Congreso Y</div>
+          <h3>Modelos de predicción de series de tiempo</h3>
+          <p>VAR/IRF robustos para evitar problemas de convergencia y overfitting.</p>
+          <div class="tags"><span class="tag">Econometría</span><span class="tag">IRF</span><span class="tag">ADF</span></div>
+          <p><a href="#">Slides</a> · <a href="#">Repo</a></p>
+        </article>
+        <article class="card">
+          <div class="meta">En curso</div>
+          <h3>Adopción temprana de tecnologías</h3>
+          <p>Análisis 2015–2022 del impacto de estabilidad macro y bienestar en adopción tecnológica.</p>
+          <div class="tags"><span class="tag">Panel</span><span class="tag">Índices</span><span class="tag">Causalidad</span></div>
+          <p><a href="#">Protocolo</a></p>
+        </article>
+      </div>
+    </section>
+
+    <!-- === Proyectos (Data/BI/DS) === -->
+    <section id="proyectos" aria-labelledby="proyectos-title">
+      <h2 id="proyectos-title">Proyectos seleccionados</h2>
+      <p class="section-lead">Casos prácticos de BI, ciencia de datos y visualización.</p>
+      <div class="grid cols-3">
+        <article class="card">
+          <div class="meta">Power BI</div>
+          <h3>Dashboard de reservas hoteleras</h3>
+          <p>Mapamundi interactivo y análisis por país/mes; pie chart por tipo de noche.</p>
+          <div class="tags"><span class="tag">DAX</span><span class="tag">ETL</span><span class="tag">Interactividad</span></div>
+          <p><a href="#">Demo</a> · <a href="#">Repo</a></p>
+        </article>
+        <article class="card">
+          <div class="meta">Python · Spark</div>
+          <h3>Pipeline de datos con HDFS/Spark</h3>
+          <p>Ingesta y limpieza de millones de registros; notebooks reproducibles.</p>
+          <div class="tags"><span class="tag">PySpark</span><span class="tag">HDFS</span><span class="tag">BigQuery</span></div>
+          <p><a href="#">Repo</a></p>
+        </article>
+        <article class="card">
+          <div class="meta">D3.js</div>
+          <h3>Visitas por país y por mes</h3>
+          <p>Visual interactiva con mapa + filtro temporal, diferenciando fines de semana.</p>
+          <div class="tags"><span class="tag">D3</span><span class="tag">Geo</span><span class="tag">UX</span></div>
+          <p><a href="#">Demo</a> · <a href="#">Código</a></p>
+        </article>
+      </div>
+    </section>
+
+    <!-- === CV === -->
+    <section id="cv" aria-labelledby="cv-title">
+      <h2 id="cv-title">Currículum Vitae</h2>
+      <p class="section-lead">Versión breve y acceso a PDF descargable.</p>
+      <div class="card">
+        <ul>
+          <li><strong>Formación:</strong> Licenciatura en Física (Año, Uni).</li>
+          <li><strong>Intereses:</strong> BI, Data Science, Enseñanza.</li>
+          <li><strong>Skills:</strong> Python, SQL, DAX, GCP, Spark, Git.</li>
+          <li><strong>Idiomas:</strong> Español (nativo), Inglés (B2/C1).</li>
+        </ul>
+        <div class="cv-actions">
+          <!-- Reemplaza cv/CV_TuNombre.pdf por tu archivo real -->
+          <a class="btn primary" href="cv/CV_TuNombre.pdf" download>Descargar PDF</a>
+          <a class="btn" href="#">Ver en línea</a>
+        </div>
+        <p class="cv-note">Consejo: mantén tu CV PDF en la carpeta <code>cv/</code> del repositorio y actualízalo cuando cambie.</p>
+      </div>
+    </section>
+
+    <!-- === Hobbies / Personal === -->
+    <section id="hobbies" aria-labelledby="hobbies-title">
+      <h2 id="hobbies-title">Hobbies</h2>
+      <p class="section-lead">Un toque personal para mostrar quién eres fuera del trabajo.</p>
+      <div class="grid cols-3">
+        <article class="card">
+          <h3>Fortnite — rutas y física</h3>
+          <p>Experimentos con cálculo del punto óptimo de salto considerando elevación y velocidades.</p>
+          <div class="tags"><span class="tag">Optimización</span><span class="tag">Simulación</span></div>
+        </article>
+        <article class="card">
+          <h3>Minecraft — diseño 60×60</h3>
+          <p>Blueprints de mansión de dos pisos con enfoque funcional/estético.</p>
+          <div class="tags"><span class="tag">Diseño</span><span class="tag">Creatividad</span></div>
+        </article>
+        <article class="card">
+          <h3>Lectura y divulgación</h3>
+          <p>Me gusta explicar ciencia con ejemplos visuales y lenguaje claro.</p>
+          <div class="tags"><span class="tag">Docencia</span><span class="tag">Comunidad</span></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- === Contacto === -->
+    <section id="contacto" aria-labelledby="contacto-title">
+      <h2 id="contacto-title">Contacto</h2>
+      <div class="card">
+        <p>¿Interesado/a en colaborar o contratarme? Escríbeme.</p>
+        <ul>
+          <li>Email: <a href="mailto:tunombre@email.com">tunombre@email.com</a></li>
+          <li>LinkedIn: <a href="#">/in/tunombre</a></li>
+          <li>GitHub: <a href="#">@tuusuario</a></li>
+          <li>Google Scholar / ORCID: <a href="#">Perfil</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="social">
+        <span>© <span id="year"></span> Tu Nombre</span>
+        <span class="sep">·</span>
+        <a href="#">Aviso de privacidad</a>
+        <span class="sep">·</span>
+        <a href="#">Licencia</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Actualiza año automáticamente
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
