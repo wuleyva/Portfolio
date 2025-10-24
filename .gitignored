@@ -1,0 +1,23 @@
+# --- Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Temporales y cachés
+*.log
+*.tmp
+*.cache
+~$*
+
+# --- Editores/IDE
+.vscode/
+.idea/
+*.iml
+
+# --- Secretos (si algún día los usas)
+.env
+*.key
+*.pem
+
+# --- OneDrive a veces crea temporales
+*.lnk
